@@ -1,0 +1,52 @@
+---
+title: Alerts & Automation
+description: Configure email, SMS, and webhook notifications when sensor values cross thresholds.
+---
+
+# Alerts & Automation
+
+Receive notifications via email, SMS, or webhook and trigger automated actions on your devices.
+
+## Creating an alert
+
+1. Open a channel and go to the **Alerts** tab
+2. Click **New Alert**
+3. Configure the condition:
+
+```
+IF field1 > 30
+THEN send email to admin@example.com
+```
+
+## Notification channels
+
+| Channel | Description |
+| ------- | ----------- |
+| **Email** | Send to one or more email addresses |
+| **SMS** | Text message alerts (Pro plan) |
+| **Webhook** | POST JSON payload to your endpoint |
+| **Device action** | Trigger a write to another channel |
+
+## Webhook payload example
+
+When an alert fires, IoTDataHub sends a POST request:
+
+```json
+{
+  "channel_id": 12345,
+  "field": "temperature",
+  "value": 32.5,
+  "threshold": 30,
+  "triggered_at": "2026-07-03T10:30:00Z"
+}
+```
+
+## Cooldown period
+
+Set a cooldown to prevent alert spam — e.g. only notify once every 15 minutes while the condition remains true.
+
+## Best practices
+
+- Set meaningful thresholds based on your sensor's normal operating range
+- Use webhooks to integrate with Slack, Discord, or custom automation
+- Test alerts with simulated values before deploying to production

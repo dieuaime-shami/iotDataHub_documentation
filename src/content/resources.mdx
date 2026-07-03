@@ -1,0 +1,43 @@
+---
+title: Video Tutorials
+description: Step-by-step video guides from the IoTDataHub YouTube channel.
+---
+
+import { videoTutorials } from '../data/videos'
+
+# Video Tutorials
+
+Watch step-by-step tutorials from the [IoTDataHub YouTube channel](https://www.youtube.com/@IoTDataHub). These are static placeholders — video IDs will be replaced with your channel content soon.
+
+<div className="iot-video-grid">
+  {videoTutorials.map((video) => (
+    <article key={video.id} className="iot-video-card">
+      <a
+        href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="iot-video-thumbnail"
+      >
+        <img
+          src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
+          alt={video.title}
+          width={320}
+          height={180}
+        />
+        <span className="iot-video-duration">{video.duration}</span>
+      </a>
+      <div className="iot-video-body">
+        <span className="iot-video-category">{video.category}</span>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+        <time dateTime={video.publishedAt}>
+          {new Date(video.publishedAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+      </div>
+    </article>
+  ))}
+</div>

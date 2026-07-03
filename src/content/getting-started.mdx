@@ -1,0 +1,57 @@
+---
+title: Getting Started
+description: Create your IoTDataHub account and connect your first device in minutes.
+---
+
+# Getting Started
+
+From hardware to insight in four straightforward steps — no DevOps expertise required.
+
+## 1. Create an account
+
+Visit [iotdatahub.rw](https://www.iotdatahub.rw/) and sign up for a free account. No credit card is required for the free tier.
+
+## 2. Create a channel
+
+Channels are where your device data is stored. In your dashboard:
+
+1. Go to **Channels** and click **New Channel**
+2. Give it a name (e.g. `temperature-sensors`)
+3. Copy your **Write API Key** — you'll need this in your device code
+
+## 3. Install the library
+
+Add the IoTDataHub library to Arduino IDE:
+
+1. Open **Sketch → Include Library → Manage Libraries**
+2. Search for **IoTDataHub**
+3. Click **Install**
+
+Supported hardware: **Arduino**, **ESP32**, **Raspberry Pi**, and any HTTP-capable device.
+
+## 4. Send your first reading
+
+```cpp
+#include <IoTDataHub.h>
+
+IoTDataHub iot("YOUR_WRITE_API_KEY");
+
+void setup() {
+  Serial.begin(115200);
+  iot.begin();
+}
+
+void loop() {
+  float temperature = 25.4;
+  iot.writeField("temperature", temperature);
+  delay(15000);
+}
+```
+
+Upload the sketch and check your channel — you should see data appear within seconds.
+
+## Next steps
+
+- [Connect Devices](/devices) — Detailed hardware and library setup
+- [Dashboard & Analytics](/dashboard) — Build your first visualization
+- [Video Tutorials](/resources) — Watch step-by-step guides
