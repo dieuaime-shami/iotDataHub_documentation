@@ -4,6 +4,8 @@ import { getPageMap } from 'nextra/page-map'
 import Link from 'next/link'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
+import logo from '../../public/IOT_DATA_HUB.png'
+import Image from 'next/image'
 
 export const metadata = {
   title: {
@@ -12,13 +14,16 @@ export const metadata = {
   },
   description:
     'Official documentation for IoTDataHub — connect devices, stream data, and build smart IoT dashboards.',
+    icons:{
+      icon:'../../public/IOT_DATA_HUB.png'
+    }
 }
 
 const navbar = (
   <Navbar
     logo={
       <span className="iot-logo">
-        <span className="iot-logo-icon" aria-hidden="true" />
+        <Image src={logo} alt="IoTDataHub" width={100} height={100} />
         IoTDataHub
       </span>
     }
