@@ -1,0 +1,31 @@
+---
+title: Supported Hardware
+description: Hardware platforms supported by IoTDataHub — Arduino, ESP32, Raspberry Pi, and HTTP devices.
+---
+
+# Supported Hardware
+
+IoTDataHub is designed to work with the hardware you already use. Choose the integration method that fits your project.
+
+## Platform compatibility
+
+| Platform | Connection | Integration |
+| -------- | ---------- | ----------- |
+| ESP32 / ESP8266 | Wi-Fi | [IoTDataHub Arduino Library](/connect-devices/arduino-library) |
+| Arduino + Ethernet shield | Ethernet | [IoTDataHub Arduino Library](/connect-devices/arduino-library) |
+| Raspberry Pi | HTTP REST | Python `requests`, curl, or [REST API](/connect-devices/rest-api) |
+| Any HTTP device | REST | [Direct HTTP POST](/connect-devices/rest-api) |
+
+## Common use cases
+
+- **Environmental monitoring** — temperature, humidity, air quality sensors
+- **Energy monitoring** — power meters, voltage, and consumption tracking
+- **Network analytics** — device status, signal strength, and uptime metrics
+
+These map directly to the dashboard templates available on the [IoTDataHub platform](https://www.iotdatahub.rw/) — Environmental, Energy, and Network views.
+
+## Before you connect
+
+1. Create a free account at [iotdatahub.rw](https://www.iotdatahub.rw/) — no credit card required.
+2. Set up a [channel](/data-channels/channels) and note your Write API Key.
+3. Follow the [Arduino Library](/connect-devices/arduino-library) or [REST API](/connect-devices/rest-api) guide for your hardware.

@@ -1,0 +1,55 @@
+---
+title: Libraries & SDKs
+description: Official IoTDataHub libraries for Arduino IDE and community integrations.
+---
+
+# Libraries & SDKs
+
+## IoTDataHub Arduino Library
+
+The official library for Arduino IDE — supports ESP32, ESP8266, and Arduino with Ethernet.
+
+**Install:** Sketch → Include Library → Manage Libraries → Search **IoTDataHub**
+
+Full guide: [Arduino Library](/connect-devices/arduino-library)
+
+```cpp
+#include <IoTDataHub.h>
+
+IoTDataHub iot("YOUR_WRITE_API_KEY");
+
+void setup() {
+  iot.begin();
+}
+
+void loop() {
+  iot.writeField("temperature", 25.4);
+  delay(15000);
+}
+```
+
+## Raspberry Pi / Python
+
+No official Python SDK is required — use the standard `requests` library with the [REST API](/developers/api-reference):
+
+```python
+import requests
+
+url = "https://api.iotdatahub.rw/update"
+params = {"api_key": "YOUR_KEY", "temperature": 25.4}
+requests.get(url, params=params)
+```
+
+## Other languages
+
+Any language with HTTP support can integrate with IoTDataHub:
+
+| Language | Approach |
+| -------- | -------- |
+| Node.js | `fetch()` or `axios` → `/update` endpoint |
+| Go | `net/http` → `/update` endpoint |
+| curl | Direct shell scripts → [REST API](/connect-devices/rest-api) |
+
+## Hardware setup videos
+
+Watch step-by-step tutorials on the [Video Tutorials](/resources/videos) page.

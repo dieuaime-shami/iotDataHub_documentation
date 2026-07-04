@@ -14,9 +14,9 @@ export const metadata = {
   },
   description:
     'Official documentation for IoTDataHub — connect devices, stream data, and build smart IoT dashboards.',
-    icons:{
-      icon:'../../public/IOT_DATA_HUB.png'
-    }
+  icons: {
+    icon: '../../public/IOT_DATA_HUB.png'
+  }
 }
 
 const navbar = (
@@ -88,6 +88,11 @@ export default async function RootLayout({
           nextThemes={{ defaultTheme: 'light', attribute: 'class' }}
           editLink={null}
           feedback={{ content: null, labels: 'feedback' }}
+          copyPageButton={false}
+          sidebar={{
+            autoCollapse: true,
+            defaultMenuCollapseLevel: 1,
+          }}
         >
           {children}
         </Layout>

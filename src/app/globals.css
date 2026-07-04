@@ -189,3 +189,14 @@ body {
 :not(.dark) .nextra-content a:hover {
   color: var(--iot-orange);
 }
+
+/* Sidebar hierarchy polish */
+.nextra-sidebar li.open > button .x\:shrink-0,
+.nextra-sidebar li.open > a .x\:shrink-0 {
+  color: var(--iot-orange);
+}
+
+.nextra-sidebar .x\:border,
+.nextra-sidebar [class*='before:bg-gray'] {
+  border-color: var(--iot-border);
+}

@@ -1,0 +1,29 @@
+---
+title: Data & Channels
+description: Stream sensor data to IoTDataHub channels in real time with encrypted transit.
+asIndexPage: true
+---
+
+# Data & Channels
+
+Push sensor readings, events, and telemetry to your channels in real time. Data is **encrypted in transit** and stored with configurable retention policies.
+
+## In this section
+
+| Guide | Description |
+| ----- | ----------- |
+| [Channels](/data-channels/channels) | Create channels and manage Write API Keys |
+| [Streaming Data](/data-channels/streaming) | Send readings and monitor live updates |
+| [Field Limits & Plans](/data-channels/field-limits) | Fields per channel and update rates |
+
+## How it fits together
+
+```
+Device  →  Write API Key  →  Channel  →  Dashboard / Alerts
+```
+
+1. A **channel** stores your sensor fields (e.g. `temperature`, `humidity`).
+2. Your device sends updates using a **Write API Key**.
+3. Data flows to [dashboards](/dashboards) and [alerts](/alerts) automatically.
+
+Already connected a device? Jump to [Streaming Data](/data-channels/streaming).

@@ -1,0 +1,41 @@
+---
+title: REST API
+description: Send sensor data to IoTDataHub from any device that can make HTTP requests.
+---
+
+# REST API
+
+Any device capable of HTTP requests can push data to IoTDataHub — no library required. This is the recommended approach for Raspberry Pi, custom firmware, and server-side integrations.
+
+## Update endpoint
+
+Send field values as query parameters:
+
+```bash
+curl "https://api.iotdatahub.rw/update?api_key=YOUR_KEY&field1=25.4&field2=60"
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `api_key` | Your channel Write API Key |
+| `field1`, `field2`, … | Field names and values to update |
+
+## Python example (Raspberry Pi)
+
+```python
+import requests
+
+API_KEY = "YOUR_WRITE_API_KEY"
+url = f"https://api.iotdatahub.rw/update?api_key={API_KEY}&temperature=25.4&humidity=60"
+
+response = requests.get(url)
+print(response.status_code)
+```
+
+## Best practices
+
+- Use consistent field names across devices for cleaner [dashboards](/dashboards).
+- Respect [update rate limits](/data-channels/field-limits) for your plan.
+- Store your API key securely — never commit it to public repositories.
+
+For full API details, see the [API Reference](/developers/api-reference).

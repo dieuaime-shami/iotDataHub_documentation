@@ -1,0 +1,65 @@
+---
+title: Arduino Library
+description: Install and use the IoTDataHub library in Arduino IDE for ESP32, ESP8266, and Arduino boards.
+---
+
+# Arduino Library
+
+The IoTDataHub library for Arduino IDE is the fastest way to connect ESP32, ESP8266, and Arduino-based hardware to the cloud.
+
+## Installation
+
+1. Open Arduino IDE
+2. Go to **Sketch → Include Library → Manage Libraries**
+3. Search for **IoTDataHub**
+4. Click **Install**
+
+## Basic usage
+
+```cpp
+#include <IoTDataHub.h>
+
+IoTDataHub iot("YOUR_WRITE_API_KEY");
+
+void setup() {
+  Serial.begin(115200);
+  iot.begin();
+}
+
+void loop() {
+  iot.writeField("field1", analogRead(A0));
+  iot.writeField("field2", 42);
+  delay(20000); // Minimum 15 seconds between updates on free tier
+}
+```
+
+Replace `YOUR_WRITE_API_KEY` with the key from your [channel settings](/data-channels/channels).
+
+## First reading example
+
+```cpp
+#include <IoTDataHub.h>
+
+IoTDataHub iot("YOUR_WRITE_API_KEY");
+
+void setup() {
+  Serial.begin(115200);
+  iot.begin();
+}
+
+void loop() {
+  float temperature = 25.4;
+  iot.writeField("temperature", temperature);
+  delay(15000);
+}
+```
+
+Upload the sketch and open your channel in IoTDataHub — data should appear within seconds.
+
+## Troubleshooting
+
+- **No data appearing?** Verify your Write API Key and channel name.
+- **Rate limit errors?** Wait at least 15 seconds between updates on the [free tier](/data-channels/field-limits).
+- **Wi-Fi issues on ESP32?** Ensure `WiFi.begin()` completes before calling `iot.begin()`.
+
+See [Video Tutorials](/resources/videos) for step-by-step hardware walkthroughs.

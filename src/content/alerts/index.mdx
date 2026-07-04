@@ -1,0 +1,31 @@
+---
+title: Alerts & Automation
+description: Email, SMS, and webhook notifications when sensor values cross thresholds.
+asIndexPage: true
+---
+
+# Alerts & Automation
+
+Receive notifications via email, SMS, or webhook and trigger automated actions on your devices — the fourth step in the IoTDataHub workflow.
+
+## In this section
+
+| Guide | Description |
+| ----- | ----------- |
+| [Notification Channels](/alerts/notifications) | Email, SMS, webhook, and device actions |
+| [Webhooks & Actions](/alerts/webhooks) | JSON payloads and automated responses |
+
+## Create an alert
+
+1. Open a channel and go to the **Alerts** tab
+2. Click **New Alert**
+3. Configure your condition and notification method
+
+Example condition:
+
+```
+IF temperature > 30
+THEN send email to admin@example.com
+```
+
+Set up [dashboards](/dashboards) alongside alerts for full visibility into your IoT deployment.

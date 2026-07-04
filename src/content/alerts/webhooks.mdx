@@ -1,0 +1,43 @@
+---
+title: Webhooks & Actions
+description: Integrate IoTDataHub alerts with Slack, Discord, and custom automation via webhooks.
+---
+
+# Webhooks & Actions
+
+Webhooks let you integrate IoTDataHub alerts with external systems — Slack, Discord, custom servers, or other IoT devices.
+
+## Webhook payload
+
+When an alert fires, IoTDataHub sends a POST request to your endpoint:
+
+```json
+{
+  "channel_id": 12345,
+  "field": "temperature",
+  "value": 32.5,
+  "threshold": 30,
+  "triggered_at": "2026-07-03T10:30:00Z"
+}
+```
+
+Configure your endpoint URL when creating the alert in the IoTDataHub dashboard.
+
+## Device actions
+
+Device actions trigger a write to another channel when an alert condition is met. Use this to:
+
+- Turn off a heater when temperature exceeds a limit
+- Activate a pump when soil moisture drops below a threshold
+- Send a command to a downstream actuator
+
+## Integration examples
+
+| Service | How |
+| ------- | --- |
+| Slack | Webhook → Slack incoming webhook URL |
+| Discord | Webhook → Discord webhook URL |
+| Custom server | Webhook → your API endpoint |
+| Another device | Device action → write to actuator channel |
+
+See [Notification Channels](/alerts/notifications) for all available alert types.

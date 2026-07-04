@@ -1,0 +1,35 @@
+---
+title: Notification Channels
+description: Configure email, SMS, webhook, and device action alerts on IoTDataHub.
+---
+
+# Notification Channels
+
+IoTDataHub supports multiple notification channels so you can reach the right people when sensor values cross thresholds.
+
+## Available channels
+
+| Channel | Description | Plan |
+| ------- | ----------- | ---- |
+| **Email** | Send to one or more email addresses | Free & Pro |
+| **SMS** | Text message alerts | Pro plan |
+| **Webhook** | POST JSON payload to your endpoint | Free & Pro |
+| **Device action** | Trigger a write to another channel | Free & Pro |
+
+## Email alerts
+
+The simplest way to get started. Enter one or more email addresses when creating an alert. IoTDataHub sends a notification when the condition is met.
+
+## SMS alerts
+
+SMS notifications are available on the **Pro plan**. Ideal for critical alerts that require immediate attention.
+
+## Cooldown period
+
+Set a cooldown to prevent alert spam — e.g. only notify once every 15 minutes while the condition remains true.
+
+## Best practices
+
+- Set meaningful thresholds based on your sensor's normal operating range
+- Use email for non-critical alerts; reserve SMS for emergencies
+- Test alerts with simulated values before deploying to production

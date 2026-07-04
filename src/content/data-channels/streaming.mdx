@@ -1,0 +1,38 @@
+---
+title: Streaming Data
+description: Push real-time sensor readings and telemetry to IoTDataHub channels.
+---
+
+# Streaming Data
+
+IoTDataHub receives sensor readings in real time. Once your device is connected, data appears in your channel view within seconds.
+
+## How data flows
+
+1. Your device reads a sensor value (temperature, voltage, status, etc.)
+2. It sends the value to IoTDataHub via the [Arduino library](/connect-devices/arduino-library) or [REST API](/connect-devices/rest-api)
+3. The channel stores the latest value and history
+4. [Dashboards](/dashboards) and [alerts](/alerts) react to the new data
+
+## Security
+
+All data is **encrypted in transit** between your device and IoTDataHub. No additional TLS configuration is required when using the official library or HTTPS endpoints.
+
+## Update intervals
+
+| Plan | Minimum interval |
+| ---- | ---------------- |
+| Free | 15 seconds |
+| Pro | 1 second |
+
+Sending updates faster than your plan allows will result in rate limit errors. See [Field Limits & Plans](/data-channels/field-limits) for details.
+
+## Verify your stream
+
+After uploading your sketch or running your script:
+
+1. Open your channel in the IoTDataHub dashboard
+2. Confirm field values update when your device sends data
+3. Check the timestamp to verify real-time delivery
+
+If no data appears, see [Arduino Library troubleshooting](/connect-devices/arduino-library#troubleshooting).

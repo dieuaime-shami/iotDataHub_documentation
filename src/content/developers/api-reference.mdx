@@ -1,0 +1,59 @@
+---
+title: API Reference
+description: IoTDataHub HTTP API for sending sensor data from any connected device.
+---
+
+# API Reference
+
+IoTDataHub exposes a simple HTTP API for pushing sensor data from any device or script.
+
+## Base URL
+
+```
+https://api.iotdatahub.rw
+```
+
+## Update data
+
+**Endpoint:** `GET /update`
+
+Send field values as query parameters:
+
+```bash
+curl "https://api.iotdatahub.rw/update?api_key=YOUR_KEY&field1=25.4&field2=60"
+```
+
+### Parameters
+
+| Parameter | Required | Description |
+| --------- | -------- | ----------- |
+| `api_key` | Yes | Channel Write API Key |
+| `field1` … `field8` | No | Field name and value pairs |
+
+### Example responses
+
+| Status | Meaning |
+| ------ | ------- |
+| `200` | Data accepted |
+| Rate limit | Update sent too frequently — see [Field Limits](/data-channels/field-limits) |
+
+## Python example
+
+```python
+import requests
+
+API_KEY = "YOUR_WRITE_API_KEY"
+fields = {"temperature": 25.4, "humidity": 60}
+params = {"api_key": API_KEY, **fields}
+
+response = requests.get("https://api.iotdatahub.rw/update", params=params)
+print(response.status_code)
+```
+
+## Security
+
+- Always use HTTPS
+- Never expose Write API Keys in client-side code or public repositories
+- Rotate keys if a key is compromised — regenerate from channel settings
+
+See also [REST API quick start](/connect-devices/rest-api) and [Webhooks](/alerts/webhooks).
