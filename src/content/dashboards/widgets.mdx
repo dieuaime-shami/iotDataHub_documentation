@@ -1,13 +1,59 @@
 ---
 title: Widget Types
-description: Line charts, gauges, bar graphs, and other IoTDataHub dashboard widgets.
+description: Control widgets and analytics widgets for IoTDataHub dashboards.
 ---
 
 # Widget Types
 
-Choose the right widget for each sensor reading. IoTDataHub dashboards support multiple visualization types for environmental, energy, and network data.
+IoTDataHub has two kinds of widgets: **control widgets** on your device page (for real-time hardware control) and **analytics widgets** on dashboards (for charts and historical data).
 
-## Available widgets
+## Device control widgets
+
+When you open a registered device, the **Widget Box** lets you build a virtual control panel that mirrors your physical hardware. Drag widgets from the panel onto the canvas.
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/widgetbox_section.png" alt="Widget Box with empty canvas" />
+  <figcaption>The Widget Box — drag widgets onto the canvas to build your control panel.</figcaption>
+</figure>
+
+### Available control widgets
+
+| Widget | Purpose |
+| ------ | ------- |
+| **Switch** | Toggle a digital output on/off (e.g. turn an LED on or off) |
+| **Slider** | Send a numeric value within a range |
+| **Number Input** | Enter a specific numeric value |
+| **LED** | Display a digital input state (on/off indicator) |
+| **Image Button** | Trigger an action with a custom image |
+
+### Configuring a widget
+
+After placing a widget on the canvas, click it to open its settings:
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/add_wiget_data.png" alt="Switch widget settings dialog" />
+  <figcaption>Set the title, datastream (virtual pin), on/off values, and theme for each widget.</figcaption>
+</figure>
+
+| Setting | Description |
+| ------- | ----------- |
+| **Title** | Label shown on the control panel |
+| **Datastream** | Virtual pin your microcontroller reads or writes |
+| **On/Off values** | Values sent when toggling (e.g. `1` and `0`) |
+| **Theme** | Visual style for the widget |
+
+Click **Save Configuration** for each widget, then **Save & Apply** to publish the control panel.
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/put_WidgetBox.png" alt="Configured widgets on device canvas" />
+  <figcaption>Your control panel with configured widgets — ready to sync with your hardware.</figcaption>
+</figure>
+
+Each widget's virtual pin must match the pin assignments in your [Arduino sketch](/connect-devices/arduino-library).
+
+## Analytics widgets
+
+Dashboards for historical data and analytics support a different set of widgets:
 
 | Widget | Best for |
 | ------ | -------- |
@@ -17,9 +63,9 @@ Choose the right widget for each sensor reading. IoTDataHub dashboards support m
 | **Number** | Single latest value display |
 | **Map** | Geo-located sensor data |
 
-## Dashboard templates
+### Dashboard templates
 
-When creating a new dashboard, choose a template that matches your use case:
+When creating a new analytics dashboard, choose a template:
 
 - **Environmental** — temperature, humidity, air quality monitoring
 - **Energy** — power consumption, voltage, and load tracking

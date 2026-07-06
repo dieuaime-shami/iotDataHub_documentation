@@ -6,20 +6,30 @@ asIndexPage: true
 
 # Connect Devices
 
-Register your IoT devices in minutes using our Library for Arduino IDE. IoTDataHub supports **Arduino**, **ESP32**, **Raspberry Pi**, and any HTTP-capable hardware — no DevOps expertise required.
+Register your IoT devices and control them from the cloud. IoTDataHub supports **Arduino**, **ESP32**, **ESP8266**, **Raspberry Pi**, and any HTTP-capable hardware.
+
+## How it works
+
+```
+Create Channel  →  Register Device  →  Build Widget Box  →  Upload Sketch  →  Control Online
+```
+
+Each device gets a virtual control panel (Widget Box) that mirrors your physical hardware. Actions on the dashboard are sent to your microcontroller in real time.
+
+New here? Follow the complete walkthrough in [Getting Started](/getting-started).
 
 ## In this section
 
 | Guide | Description |
 | ----- | ----------- |
 | [Supported Hardware](/connect-devices/supported-hardware) | Platforms, connections, and integration methods |
-| [Arduino Library](/connect-devices/arduino-library) | Install and use the IoTDataHub library in Arduino IDE |
+| [Arduino Library](/connect-devices/arduino-library) | Install the library and paste your device configuration |
 | [REST API](/connect-devices/rest-api) | Send data from any HTTP-capable device |
 
 ## Quick start
 
-1. Create a [channel](/data-channels/channels) and copy your Write API Key.
-2. Install the [Arduino library](/connect-devices/arduino-library) or use the [REST API](/connect-devices/rest-api).
-3. Confirm readings appear in your IoTDataHub dashboard within seconds.
-
-New here? Begin with [Getting Started](/getting-started).
+1. [Create a channel](/data-channels/channels) with your hardware and connection type
+2. Register a device from that channel on the **Devices** page
+3. Build your [Widget Box](/dashboards/widgets) by dragging widgets onto the canvas
+4. Copy your [device configuration](/connect-devices/arduino-library#device-configuration) and paste it into your Arduino sketch
+5. Upload the sketch — your device goes online and you can control it from the browser

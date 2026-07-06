@@ -23,21 +23,33 @@ const navbar = (
   <Navbar
     logo={
       <span className="iot-logo">
-        <Image src={logo} alt="IoTDataHub" width={100} height={100} />
+        <Image
+          src={logo}
+          alt=""
+          width={96}
+          height={96}
+          priority
+          sizes="(max-width: 640px) 36px, (max-width: 1024px) 56px, 72px"
+          className="iot-logo-img"
+        />
         IoTDataHub
       </span>
     }
     logoLink="/"
-    projectLink="https://www.iotdatahub.rw"
-    projectIcon={
-      <span className="iot-nav-link" title="Go to platform">
-        Platform ↗
-      </span>
-    }
   >
-    <Link href="https://www.iotdatahub.rw/pricing" className="iot-nav-link">
-      Pricing
-    </Link>
+    <div className="iot-nav-links">
+      <Link
+        href="https://www.iotdatahub.rw"
+        className="iot-nav-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Platform ↗
+      </Link>
+      <Link href="https://www.iotdatahub.rw/pricing" className="iot-nav-link">
+        Pricing
+      </Link>
+    </div>
   </Navbar>
 )
 

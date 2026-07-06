@@ -1,29 +1,30 @@
 ---
 title: Data & Channels
-description: Stream sensor data to IoTDataHub channels in real time with encrypted transit.
+description: Create channels and stream sensor data to IoTDataHub in real time.
 asIndexPage: true
 ---
 
 # Data & Channels
 
-Push sensor readings, events, and telemetry to your channels in real time. Data is **encrypted in transit** and stored with configurable retention policies.
+Channels are the foundation of IoTDataHub — they define your hardware platform, connection type, and the data path between your devices and the cloud.
 
 ## In this section
 
 | Guide | Description |
 | ----- | ----------- |
-| [Channels](/data-channels/channels) | Create channels and manage Write API Keys |
+| [Channels](/data-channels/channels) | Create channels and configure hardware settings |
 | [Streaming Data](/data-channels/streaming) | Send readings and monitor live updates |
 | [Field Limits & Plans](/data-channels/field-limits) | Fields per channel and update rates |
 
 ## How it fits together
 
 ```
-Device  →  Write API Key  →  Channel  →  Dashboard / Alerts
+Channel  →  Device  →  Widget Box  →  Arduino Sketch  →  Online Control
 ```
 
-1. A **channel** stores your sensor fields (e.g. `temperature`, `humidity`).
-2. Your device sends updates using a **Write API Key**.
-3. Data flows to [dashboards](/dashboards) and [alerts](/alerts) automatically.
+1. A **channel** defines your hardware and connection type.
+2. A **device** is registered from that channel and gets its own control panel.
+3. The **Widget Box** maps virtual pins to your physical hardware.
+4. Your **Arduino sketch** uses device configuration credentials to connect.
 
 Already connected a device? Jump to [Streaming Data](/data-channels/streaming).

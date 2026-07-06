@@ -1,61 +1,200 @@
 ---
 title: Getting Started
-description: Create your IoTDataHub account and connect your first device in minutes.
+description: Create your IoTDataHub account, register a device, and control hardware from the cloud.
 ---
 
 # Getting Started
 
-From hardware to insight in four straightforward steps — no DevOps expertise required.
+This guide walks you through the full IoTDataHub workflow — from creating an account to controlling your hardware online. No DevOps expertise required.
 
-## 1. Create an account
+## 1. Create your account
 
 Visit [iotdatahub.rw](https://www.iotdatahub.rw/) and sign up for a free account. No credit card is required for the free tier.
 
+<figure className="iot-screenshot iot-screenshot--narrow">
+  <img src="/screenshots/create_account.png" alt="IoTDataHub sign-up page" />
+  <figcaption>Sign up with your email or Google account to get started.</figcaption>
+</figure>
+
+After signing in, you are taken to the **Dashboard**.
+
 ## 2. Create a channel
 
-Channels are where your device data is stored. See the full [Channels guide](/data-channels/channels) for details.
+A **channel** defines how your hardware connects to IoTDataHub. You must create one before registering a device.
 
-1. Go to **Channels** and click **New Channel**
-2. Give it a name (e.g. `temperature-sensors`)
-3. Copy your **Write API Key** — you'll need this in your device code
+1. Open **Channels** in the sidebar
+2. Click **+ Add New Channel**
 
-## 3. Install the library
+<figure className="iot-screenshot">
+  <img src="/screenshots/creating_channel.png" alt="IoTDataHub Channels page with Add New Channel button" />
+  <figcaption>The Channels page — click **+ Add New Channel** to open the creation form.</figcaption>
+</figure>
 
-Add the IoTDataHub library to Arduino IDE — full instructions in the [Arduino Library guide](/connect-devices/arduino-library):
+3. Fill in the **Create New Channel** form:
 
-1. Open **Sketch → Include Library → Manage Libraries**
-2. Search for **IoTDataHub**
-3. Click **Install**
+<figure className="iot-screenshot">
+  <img src="/screenshots/Create_and_add_channel.png" alt="Create New Channel form" />
+  <figcaption>Enter a channel name, select your hardware and connection type, and add a short description.</figcaption>
+</figure>
 
-Supported hardware: **Arduino**, **ESP32**, **Raspberry Pi**, and any HTTP-capable device. See [Supported Hardware](/connect-devices/supported-hardware).
+- **Channel Name** — a descriptive name (e.g. `blinking`, `temperature-sensors`)
+- **Hardware** — select your microcontroller platform
 
-## 4. Send your first reading
+<figure className="iot-screenshot">
+  <img src="/screenshots/select_the_hardware.png" alt="Hardware selection dropdown in Create New Channel form" />
+  <figcaption>Choose your hardware: ESP32, ESP8266, Arduino, Raspberry Pi, or Other.</figcaption>
+</figure>
+
+- **Connection Type** — how the device connects to the internet
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/Select_the_connectionType.png" alt="Connection type dropdown in Create New Channel form" />
+  <figcaption>Select WiFi, Ethernet, Satellite, or GSM depending on your setup.</figcaption>
+</figure>
+
+- **Description** — optional notes about the channel (up to 128 characters)
+
+4. Click **Add Channel** to save
+
+See the [Channels guide](/data-channels/channels) for naming tips and management details.
+
+## 3. Register a device
+
+Once your channel exists, register a device linked to it.
+
+1. Open **Devices** in the sidebar
+2. Click **+ New Device**
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/device-dashboard.png" alt="IoT Device Dashboard with New Device button" />
+  <figcaption>The Devices page — click **+ New Device** to register hardware.</figcaption>
+</figure>
+
+3. Choose **From Channel**
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/add_newDevice.png" alt="New Device dialog with From Channel option" />
+  <figcaption>Select **From Channel** to link a device to an existing channel.</figcaption>
+</figure>
+
+4. Select your channel and enter a **Device Name**
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/select_the_channel.png" alt="From Channel form with channel selection" />
+  <figcaption>Pick the channel you created and give your device a name.</figcaption>
+</figure>
+
+5. Choose a **Device Type** (Sensor, Actuator, Gateway, Controller, or Other)
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/select_the_typeOfDevice.png" alt="Device type selection dropdown" />
+  <figcaption>Select the type that best describes your hardware.</figcaption>
+</figure>
+
+6. Click **Create Device**
+
+Your new device appears in the device list.
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/after_adding_device.png" alt="Device list showing newly created device" />
+  <figcaption>Your registered device appears in the list — click it to open the control panel.</figcaption>
+</figure>
+
+## 4. Build your online control panel
+
+Each device has a **Widget Box** — a virtual control panel that mirrors your physical hardware. You build it by dragging widgets onto the canvas.
+
+1. Click your device in the list to open its control page
+2. The **Widget Box** panel on the right lists available widgets
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/widgetbox_section.png" alt="Widget Box panel with empty canvas" />
+  <figcaption>Drag widgets from the Widget Box onto the canvas to build your control panel.</figcaption>
+</figure>
+
+3. Drag widgets (Switch, Slider, LED, etc.) onto the canvas
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/put_WidgetBox.png" alt="Widgets placed on the device canvas" />
+  <figcaption>Place widgets on the canvas — each one maps to a virtual pin on your microcontroller.</figcaption>
+</figure>
+
+4. Click each widget to configure it:
+   - **Title** — the label shown on the dashboard
+   - **Datastream** — the virtual pin your hardware reads or writes
+   - **On/Off values** — the values sent when toggling (e.g. `1` and `0`)
+   - **Theme** — visual style for the widget
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/add_wiget_data.png" alt="Switch widget configuration dialog" />
+  <figcaption>Configure each widget's name, virtual pin, values, and theme, then click **Save Configuration**.</figcaption>
+</figure>
+
+5. Click **Save & Apply** to save your control panel
+
+## 5. Install the library and upload your sketch
+
+### Install the Arduino library
+
+1. Open Arduino IDE
+2. Go to **Sketch → Include Library → Manage Libraries**
+3. Search for **IoTDataHub**
+4. Click **Install**
+
+Supported hardware: **Arduino**, **ESP32**, **ESP8266**, **Raspberry Pi**, and any HTTP-capable device. See [Supported Hardware](/connect-devices/supported-hardware).
+
+### Copy your device configuration
+
+On your device's control page, click **Config** to open the **Device Configuration** dialog. Copy the credentials shown.
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/device_configuration.png" alt="Device Configuration dialog with credentials" />
+  <figcaption>Copy your username, organization, device token, and device ID — use **Copy All** to grab everything at once.</figcaption>
+</figure>
+
+Paste these values into your Arduino sketch along with your WiFi credentials. The library reads the `#define` values automatically:
 
 ```cpp
 #include <IoTDataHub.h>
 
-IoTDataHub iot("YOUR_WRITE_API_KEY");
+// Paste from Device Configuration (Config button)
+#define IOTDATAHUB_USER_NAME         "Your Name"
+#define IOTDATAHUB_ORGANIZATION_NAME "My Work Space"
+#define IOTDATAHUB_DEVICE_TOKEN      "your-device-token"
+#define IOTDATAHUB_DEVICE_ID         "your-device-id"
+
+// Your WiFi network
+const char* ssid     = "YOUR_WIFI_NAME";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+IoTDataHub iot;
 
 void setup() {
   Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) { delay(500); }
   iot.begin();
 }
 
 void loop() {
-  float temperature = 25.4;
-  iot.writeField("temperature", temperature);
-  delay(15000);
+  iot.run(); // Keeps the device connected and syncs widget states
 }
 ```
 
-Upload the sketch and check your channel — you should see data appear within seconds.
+Make sure your **WiFi name and password are correct**, then upload the sketch to your microcontroller.
+
+Full library reference: [Arduino Library](/connect-devices/arduino-library).
+
+## 6. Go online and control your device
+
+After uploading, your device connects to IoTDataHub. Return to the device page in your browser — the status indicator turns **online**, and your widgets become interactive.
+
+Toggle switches, adjust sliders, and read sensor values directly from the dashboard. Every action on the web control panel is sent to your physical hardware in real time.
 
 ## Next steps
 
-Follow the four-step workflow from [iotdatahub.rw](https://www.iotdatahub.rw/):
-
-- [Connect Devices](/connect-devices) — Detailed hardware and library setup
-- [Data & Channels](/data-channels) — Streaming and field limits
-- [Dashboards](/dashboards) — Build your first visualization
-- [Alerts & Automation](/alerts) — Set up notifications
+- [Connect Devices](/connect-devices) — Hardware setup, library details, and REST API
+- [Data & Channels](/data-channels) — Channel management and streaming
+- [Dashboards](/dashboards) — Analytics dashboards with charts and gauges
+- [Alerts & Automation](/alerts) — Email, SMS, and webhook notifications
 - [Video Tutorials](/resources/videos) — Watch step-by-step guides

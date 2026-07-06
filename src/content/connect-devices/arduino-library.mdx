@@ -5,7 +5,7 @@ description: Install and use the IoTDataHub library in Arduino IDE for ESP32, ES
 
 # Arduino Library
 
-The IoTDataHub library for Arduino IDE is the fastest way to connect ESP32, ESP8266, and Arduino-based hardware to the cloud.
+The IoTDataHub library for Arduino IDE connects your microcontroller to the cloud and syncs widget states with your online control panel.
 
 ## Installation
 
@@ -14,52 +14,74 @@ The IoTDataHub library for Arduino IDE is the fastest way to connect ESP32, ESP8
 3. Search for **IoTDataHub**
 4. Click **Install**
 
-## Basic usage
+## Device configuration
+
+Before writing code, complete the platform setup in [Getting Started](/getting-started):
+
+1. Create a [channel](/data-channels/channels)
+2. Register a [device](/getting-started#3-register-a-device) from that channel
+3. Build your [Widget Box](/dashboards/widgets)
+4. Click **Config** on your device page to open **Device Configuration**
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/device_configuration.png" alt="Device Configuration dialog" />
+  <figcaption>Copy your credentials from the Config dialog — use **Copy All** to grab everything at once.</figcaption>
+</figure>
+
+You need four values from this dialog:
+
+| Credential | Description |
+| ---------- | ----------- |
+| `IOTDATAHUB_USER_NAME` | Your account name |
+| `IOTDATAHUB_ORGANIZATION_NAME` | Your workspace name |
+| `IOTDATAHUB_DEVICE_TOKEN` | Secret token that authenticates your device |
+| `IOTDATAHUB_DEVICE_ID` | Unique identifier for this device |
+
+Keep your device token private — treat it like a password.
+
+## Basic sketch
+
+Paste your credentials and WiFi settings into this template. The library reads the `#define` values automatically — paste them exactly as shown in the Config dialog.
 
 ```cpp
 #include <IoTDataHub.h>
 
-IoTDataHub iot("YOUR_WRITE_API_KEY");
+// Paste from Device Configuration (Config button)
+#define IOTDATAHUB_USER_NAME         "Your Name"
+#define IOTDATAHUB_ORGANIZATION_NAME "My Work Space"
+#define IOTDATAHUB_DEVICE_TOKEN      "your-device-token"
+#define IOTDATAHUB_DEVICE_ID         "your-device-id"
+
+// Your WiFi network — must match your actual network
+const char* ssid     = "YOUR_WIFI_NAME";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+IoTDataHub iot;
 
 void setup() {
   Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) { delay(500); }
   iot.begin();
 }
 
 void loop() {
-  iot.writeField("field1", analogRead(A0));
-  iot.writeField("field2", 42);
-  delay(20000); // Minimum 15 seconds between updates on free tier
+  iot.run(); // Keeps the device connected and syncs widget states
 }
 ```
 
-Replace `YOUR_WRITE_API_KEY` with the key from your [channel settings](/data-channels/channels).
+Upload the sketch to your microcontroller. Once connected, your device page shows an **online** indicator and your widgets become interactive.
 
-## First reading example
+## Virtual pins
 
-```cpp
-#include <IoTDataHub.h>
+Each widget on your control panel maps to a **virtual pin** on your microcontroller. When you configured widgets in the Widget Box, you assigned datastreams (virtual pins) to each one. Your sketch reads and writes these pins to sync with the dashboard.
 
-IoTDataHub iot("YOUR_WRITE_API_KEY");
-
-void setup() {
-  Serial.begin(115200);
-  iot.begin();
-}
-
-void loop() {
-  float temperature = 25.4;
-  iot.writeField("temperature", temperature);
-  delay(15000);
-}
-```
-
-Upload the sketch and open your channel in IoTDataHub — data should appear within seconds.
+For example, a Switch widget on virtual pin `V0` with on value `1` and off value `0` controls a GPIO pin on your board.
 
 ## Troubleshooting
 
-- **No data appearing?** Verify your Write API Key and channel name.
-- **Rate limit errors?** Wait at least 15 seconds between updates on the [free tier](/data-channels/field-limits).
+- **Device stays offline?** Double-check your WiFi name and password, and verify all four configuration values are pasted correctly.
+- **Widgets not responding?** Confirm virtual pin numbers in your sketch match the datastreams you configured in the Widget Box.
 - **Wi-Fi issues on ESP32?** Ensure `WiFi.begin()` completes before calling `iot.begin()`.
 
 See [Video Tutorials](/resources/videos) for step-by-step hardware walkthroughs.

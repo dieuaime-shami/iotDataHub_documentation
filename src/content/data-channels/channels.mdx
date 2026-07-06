@@ -1,41 +1,69 @@
 ---
 title: Channels
-description: Create and manage IoTDataHub channels where your device data is stored.
+description: Create and manage IoTDataHub channels that link your hardware to the cloud.
 ---
 
 # Channels
 
-Channels are the core storage unit in IoTDataHub — each channel holds up to 8 fields of sensor data from one or more devices.
+Channels are the first step in connecting hardware to IoTDataHub. Each channel defines your **hardware platform**, **connection type**, and the data path between your microcontroller and the cloud.
 
 ## Create a channel
 
 1. Sign in to [IoTDataHub](https://www.iotdatahub.rw/)
-2. Go to **Channels** and click **New Channel**
-3. Give it a descriptive name (e.g. `temperature-sensors`, `energy-monitor`)
-4. Copy your **Write API Key** — you'll need this in your device code
+2. Open **Channels** in the sidebar
+3. Click **+ Add New Channel**
 
-## Write API Key
+<figure className="iot-screenshot">
+  <img src="/screenshots/creating_channel.png" alt="IoTDataHub Channels page" />
+  <figcaption>Navigate to **Channels** and click **+ Add New Channel**.</figcaption>
+</figure>
 
-The Write API Key authorizes your device to push data to a specific channel. Keep it private and treat it like a password.
+4. Fill in the **Create New Channel** form and click **Add Channel**
 
-Use the key in your [Arduino library](/connect-devices/arduino-library) or [REST API](/connect-devices/rest-api) calls:
+<figure className="iot-screenshot">
+  <img src="/screenshots/Create_and_add_channel.png" alt="Create New Channel form" />
+  <figcaption>Enter a name, select hardware and connection type, and add a description.</figcaption>
+</figure>
 
-```cpp
-IoTDataHub iot("YOUR_WRITE_API_KEY");
+### Channel fields
+
+| Field | Description |
+| ----- | ----------- |
+| **Channel Name** | A unique, descriptive name (e.g. `temperature-sensors`, `blinking`) |
+| **Hardware** | Your microcontroller — ESP32, ESP8266, Arduino, Raspberry Pi, or Other |
+| **Connection Type** | How the device connects — WiFi, Ethernet, Satellite, or GSM |
+| **Description** | Optional notes about the channel (up to 128 characters) |
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/select_the_hardware.png" alt="Hardware selection dropdown" />
+  <figcaption>Select the hardware platform your device uses.</figcaption>
+</figure>
+
+<figure className="iot-screenshot">
+  <img src="/screenshots/Select_the_connectionType.png" alt="Connection type selection dropdown" />
+  <figcaption>Choose the connection method your device will use.</figcaption>
+</figure>
+
+## After creating a channel
+
+Once saved, your channel appears in the list. The next step is to [register a device](/getting-started#3-register-a-device) linked to that channel.
+
+```
+Channel  →  Device  →  Widget Box  →  Arduino Sketch
 ```
 
 ## Naming conventions
 
-Use clear, consistent field names across devices:
+Use clear, consistent names across channels and devices:
 
 | Good | Avoid |
 | ---- | ----- |
-| `temperature` | `temp1`, `t`, `field3` |
-| `humidity` | `data`, `val` |
-| `power_kw` | `x` |
+| `temperature-sensors` | `ch1`, `test`, `abc` |
+| `energy-monitor` | `data`, `temp1` |
+| `blinking-led` | `x`, `field3` |
 
 Consistent naming makes [dashboards](/dashboards) and [alerts](/alerts) easier to configure.
 
 ## Multiple devices, one channel
 
-You can send data from multiple devices to the same channel as long as they use the same Write API Key and field names.
+You can register multiple devices from the same channel. Each device gets its own control panel and configuration credentials.
